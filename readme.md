@@ -15,6 +15,7 @@ All base64 results are written in the same JSON with pictures' name and director
 
 ## Results examples
 - short_format = true
+```javascript
 {
   "img1": "iVBORw0KGgoAAAANSUhEUg[...]=",
   "img2": "iVBORw0KGgoAAAANSUhEUg[...]=",
@@ -22,8 +23,10 @@ All base64 results are written in the same JSON with pictures' name and director
     "img3": "iVBORw0KGgoAAAANSUhEUg[...]"
   }
 }
+```
 
 - short_format = false
+```javascript
 {
   "img1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]=",
   "img2": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]=",
@@ -31,3 +34,4 @@ All base64 results are written in the same JSON with pictures' name and director
     "img3": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]"
   }
 }
+```
