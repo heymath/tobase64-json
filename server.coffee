@@ -10,7 +10,7 @@ dir_keys_int      = false
 json_name         = "base64.json"
 files_exceptions  = [
   ".DS_Store"
-  json_name
+  ".gitignore"
 ]
 
 
