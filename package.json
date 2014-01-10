@@ -1,0 +1,12 @@
+{
+  "name": "tobase64-json",
+  "version": "0.1.0",
+  "engines": [
+    "node >= 0.8.0"
+  ],
+  "main": "server.coffee",
+  "devDependencies": {
+    "lodash": "~2.3.0",
+    "mime": "*"
+  }
+}
