@@ -16,10 +16,10 @@ do tobase64json.run
 - json_name    : name of the generated json
 
 ## Use with options
-> tobase64json = require "tobase64-json"
-tobase64json.short_format = true
-tobase64json.dir_keys_int = false
-tobase64json.dir_path     = "pictures/"
+> tobase64json = require "tobase64-json"  
+tobase64json.short_format = true  
+tobase64json.dir_keys_int = false  
+tobase64json.dir_path     = "pictures/"  
 do tobase64json.run
 
 ## Results examples
