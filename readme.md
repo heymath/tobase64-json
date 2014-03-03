@@ -6,7 +6,7 @@ All base64 results are written in the same JSON with pictures' name and director
 
 
 ## Use
-> tobase64json = require "tobase64-json"
+> tobase64json = require "tobase64-json"  
 do tobase64json.run
 
 ## Options
