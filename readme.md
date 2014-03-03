@@ -56,7 +56,7 @@ do tobase64json.run
 }
 ```
 
-- dir_keys_int = false
+- dir_keys_int = true
 ```javascript
 {
   "0": "iVBORw0KGgoAAAANSUhEUg[...]=",
