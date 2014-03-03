@@ -1,12 +1,36 @@
 {
-  "name": "tobase64-json",
-  "version": "0.1.0",
-  "engines": [
-    "node >= 0.8.0"
+  "author": {
+    "name": "Mathieu Dutto",
+    "email": "dutto.mathieu@gmail.com",
+    "url": "http://github.com/heymath"
+  },
+  "contributors": [
+    {
+      "name": "Arnaud Molo",
+      "email": "arnaud@onesime.fr",
+      "url": "http://github.com/onesime"
+    }
   ],
-  "main": "server.coffee",
+  "description": "Fast way to convert several pictures to base64 in a JSON.",
+  "dependencies": {
+    "lodash": "~2.3.0",
+    "mime": "*"
+  },
   "devDependencies": {
     "lodash": "~2.3.0",
     "mime": "*"
-  }
+  },
+  "keywords": [
+    "util",
+    "mime"
+  ],
+  "main": "./lib/tobase64-json.js",
+  "name": "tobase64-json",
+  "repository": {
+    "url": "https://github.com/heymath/tobase64-json",
+    "type": "git"
+  },
+  "version": "0.1.0",
+  "readme": "",
+  "readmeFilename": "readme.md"
 }
