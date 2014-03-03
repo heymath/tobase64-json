@@ -22,7 +22,12 @@
   },
   "keywords": [
     "util",
-    "mime"
+    "mime",
+    "json",
+    "base64",
+    "lodash",
+    "pictures",
+    "convert"
   ],
   "main": "./lib/tobase64-json.js",
   "name": "tobase64-json",
