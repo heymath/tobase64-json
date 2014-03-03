@@ -9,18 +9,18 @@ All base64 results are written in the same JSON with pictures' name and director
 > tobase64json = require "tobase64-json"
 do tobase64json.run
 
+## Options
+- short_format : true or false
+- dir_keys_int : true or false
+- dir_path     : path to pictures directory
+- json_name    : name of the generated json
+
 ## Use with options
 > tobase64json = require "tobase64-json"
 tobase64json.short_format = true
 tobase64json.dir_keys_int = false
 tobase64json.dir_path     = "pictures/"
 do tobase64json.run
-
-## Options
-- short_format : true or false
-- dir_keys_int : true or false
-- dir_path     : path to pictures directory
-- json_name    : name of the generated json
 
 ## Results examples
 - short_format = true
