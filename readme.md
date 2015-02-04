@@ -1,68 +1,63 @@
 tobase64-json
 =============
 
-> tobase64-json is a fast way to convert several pictures to base64 in a JSON.
-All base64 results are written in the same JSON with pictures' name and directories' name as JSON attributes.
-
+> tobase64-json is a fast way to convert filess to base64 into a JSON.
 
 ## Use
-> tobase64json = require "tobase64-json"  
-do tobase64json.run
+```javascript
+var Tobase64JSON = require("tobase64-json");
+var options = {
+  src: __dirname + '/images',
+  dist: __dirname
+};
+var tobase64json = new Tobase64JSON(options);
+```
+
+```javascript
+var Tobase64JSON = require("tobase64-json");
+var options = {
+  src: __dirname + '/images',
+  dist: __dirname,
+  autorun: false
+};
+var tobase64json = new Tobase64JSON(options);
+tobase64json.run();
+```
 
 ## Options
-- short_format : true or false
-- dir_keys_int : true or false
-- dir_path     : path to pictures directory
-- json_name    : name of the generated json
-
-## Use with options
-> tobase64json = require "tobase64-json"  
-tobase64json.short_format = true  
-tobase64json.dir_keys_int = false  
-tobase64json.dir_path     = "pictures/"  
-do tobase64json.run
-
-## Results examples
-- short_format = true
-```javascript
-{
-  "img1": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "img2": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "directory1": {
-    "img3": "iVBORw0KGgoAAAANSUhEUg[...]"
-  }
-}
-```
-
-- short_format = false
-```javascript
-{
-  "img1": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]=",
-  "img2": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]=",
-  "directory1": {
-    "img3": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUg[...]"
-  }
-}
-```
-
-- dir_keys_int = false
-```javascript
-{
-  "img1": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "img2": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "directory1": {
-    "img3": "iVBORw0KGgoAAAANSUhEUg[...]"
-  }
-}
-```
-
-- dir_keys_int = true
-```javascript
-{
-  "0": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "1": "iVBORw0KGgoAAAANSUhEUg[...]=",
-  "2": {
-    "0": "iVBORw0KGgoAAAANSUhEUg[...]"
-  }
-}
-```
+> - src
+    - type: string
+    - desc: Path to the directory to convert
+    - default: ""
+- dist:
+  - type: string
+  - desc: Path to the directory of the JSON output
+  - default: ""
+- json_name:
+  - type: string
+  - desc: JSON file name white extension
+  - default: "tobase64.json"
+- keys_int:
+  - type: boolean
+  - desc: true = JSON keys are integers (0, 1, 2)
+  - default: false
+- keys_ext:
+  - type: boolean
+  - desc: true = JSON keys are files/directories name with extension (animals, dog.jpg, cat.gif)
+  - default: false
+- recursive:
+  - type: boolean
+  - desc: true = Search in src directory recursilvely
+  - default: true
+- autorun:
+  - type: boolean
+  - desc: true = Run convertion at instanciating
+  - default: true
+- data_mime:
+  - type: boolean
+  - desc: true = Add data mime before base64 encoding
+  - default: true
+- exclude:
+  - type: array
+  - desc: Files name to not convert
+  - default: [".DS_Store", ".gitignore"]
