@@ -25,7 +25,8 @@ tobase64json.run();
 ```
 
 ## Options
-> - src
+>
+- src
     - type: string
     - desc: Path to the directory to convert
     - default: ""
