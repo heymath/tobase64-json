@@ -1,64 +1,145 @@
 tobase64-json
 =============
 
-> tobase64-json is a fast way to convert filess to base64 into a JSON.
+> tobase64-json is a fast way to convert files to base64 into a JSON like object.
 
-## Use
+
+## Install
+`$ npm install --save tobase64-json`
+
+
+## Examples
+
+### With default options
 ```javascript
-var Tobase64JSON = require("tobase64-json");
-var options = {
-  src: __dirname + '/images',
-  dist: __dirname
-};
-var tobase64json = new Tobase64JSON(options);
+// import the library
+var Tobase64JSON = require('tobase64-json');
+
+// your files directory to convert into base64
+var dirPath = __dirname + '/whatever';
+
+var base64json = new Tobase64JSON(dirPath).get();
 ```
 
+### With custom options
 ```javascript
-var Tobase64JSON = require("tobase64-json");
+// import the library
+var Tobase64JSON = require('tobase64-json');
+
+// these are actually the default options
 var options = {
-  src: __dirname + '/images',
-  dist: __dirname,
-  autorun: false
+  dataMimeType: true,
+  ignoreFiles: ['.DS_Store'],
+  keysExt: true,
+  recursive: true
 };
-var tobase64json = new Tobase64JSON(options);
-tobase64json.run();
+
+// then can do it like one of these ways:
+var base64json = new Tobase64JSON(dirPath, options).get();
+var base64json = new Tobase64JSON(dirPath).setOptions(options).get();
 ```
+
 
 ## Options
->
-- src
-    - type: string
-    - desc: Path to the directory to convert
-    - default: ""
-- dist:
-  - type: string
-  - desc: Path to the directory of the JSON output
-  - default: ""
-- json_name:
-  - type: string
-  - desc: JSON file name white extension
-  - default: "tobase64.json"
-- keys_int:
-  - type: boolean
-  - desc: true = JSON keys are integers (0, 1, 2)
-  - default: false
-- keys_ext:
-  - type: boolean
-  - desc: true = JSON keys are files/directories name with extension (animals, dog.jpg, cat.gif)
-  - default: false
-- recursive:
-  - type: boolean
-  - desc: true = Search in src directory recursilvely
-  - default: true
-- autorun:
-  - type: boolean
-  - desc: true = Run convertion at instanciating
-  - default: true
-- data_mime:
-  - type: boolean
-  - desc: true = Add data mime before base64 encoding
-  - default: true
-- exclude:
-  - type: array
-  - desc: Files name to not convert
-  - default: [".DS_Store", ".gitignore"]
+
+### dataMimeType
+- **desc**: prefix base64 width data mime type
+- **type**: boolean
+- **default**: true
+
+
+### ignoreFiles
+- **desc**: files name to ignore
+- **type**: array
+- **default**: ['.DS_Store']
+
+
+### keysExt
+- **desc**: include files extensions in JSON keys or not
+- **type**: boolean
+- **default**: true
+
+
+### recursive
+- **desc**: convert directory content recursively or not
+- **type**: boolean
+- **default**: true
+
+
+## Output examples
+
+### default
+```javascript
+new Tobase64JSON(__dirname + '/images').get();
+
+{
+  'image1.jpg': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+  'image2.png': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAA...',
+  'directory': {
+    'image3.gif': 'data:image/gif;base64,R0lGODdhlgCWAOMAAAAAAP///z8/P9...'
+  },
+  'folder': {
+    'image1.jpg': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+    'image2.png': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAA...'
+  }
+}
+```
+
+### dataMimeType: false
+```javascript
+new Tobase64JSON(__dirname + '/images', { dataMimeType: false }).get();
+
+{
+  'image1.jpg': '/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+  'image2.png': 'iVBORw0KGgoAAAANSUhEUgAAADIAAA...',
+  'directory': {
+    'image3.gif': 'R0lGODdhlgCWAOMAAAAAAP///z8/P9...'
+  },
+  'folder': {
+    'image1.jpg': '/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+    'image2.png': 'iVBORw0KGgoAAAANSUhEUgAAADIAAA...'
+  }
+}
+```
+
+### ignoreFiles: ['image1.jpg']
+```javascript
+new Tobase64JSON(__dirname + '/images', { ignoreFiles: ['image1.jpg'] }).get();
+
+{
+  'image2.png': 'iVBORw0KGgoAAAANSUhEUgAAADIAAA...',
+  'directory': {
+    'image3.gif': 'R0lGODdhlgCWAOMAAAAAAP///z8/P9...'
+  },
+  'folder': {
+    'image2.png': 'iVBORw0KGgoAAAANSUhEUgAAADIAAA...'
+  }
+}
+```
+
+### keysExt: false
+```javascript
+new Tobase64JSON(__dirname + '/images').setOptions({ keysExt: false }).get();
+
+{
+  'image1': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+  'image2': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAA...',
+  'directory': {
+    'image3': 'data:image/gif;base64,R0lGODdhlgCWAOMAAAAAAP///z8/P9...'
+  },
+  'folder': {
+    'image1': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+    'image2': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAA...'
+  }
+}
+```
+
+### recursive: false
+```javascript
+new Tobase64JSON(__dirname + '/images').setOptions({ recursive: false }).get();
+
+{
+  'image1.jpg': 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//...',
+  'image2.png': 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAA...'
+}
+```
