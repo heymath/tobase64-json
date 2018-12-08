@@ -14,9 +14,9 @@
   "description": "Fast way to convert files to base64 into a JSON.",
   "main": "index.js",
   "dependencies": {
-    "graceful-fs": "~4.1.0",
-    "lodash": "~3.0.0",
-    "mime": "~1.2.0"
+    "graceful-fs": "^4.1.0",
+    "lodash": "^4.17.5",
+    "mime": "^1.4.1"
   },
   "devDependencies": {
     "chai": "*",

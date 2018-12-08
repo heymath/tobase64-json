@@ -1,5 +1,4 @@
 var fs = require('graceful-fs');
-var util = require('util');
 var mime = require('mime');
 var _ = require('lodash');
 
@@ -16,7 +15,7 @@ var Tobase64JSON = function (path, options) {
   this.path = path;
 
   this.setOptions(options);
-}
+};
 
 Tobase64JSON.prototype.setOptions = function (options) {
   if (typeof options === 'object') {
@@ -42,9 +41,8 @@ Tobase64JSON.prototype.setOptions = function (options) {
 Tobase64JSON.prototype._getDirPath = function (dir) {
   if (dir.substring(dir.length - 1) === '/') {
     return dir;
-  } else {
-    return dir + '/';
   }
+  return dir + '/';
 };
 
 Tobase64JSON.prototype._getFileKey = function (file) {
@@ -61,16 +59,16 @@ Tobase64JSON.prototype._getFileKey = function (file) {
 Tobase64JSON.prototype._convertFileToBase64 = function (path) {
   var fileBase64 = fs.readFileSync(path).toString('base64');
 
-  return util.format((this.dataMimeType
-    ? ('data:' + mime.lookup(path) + ';base64,' + fileBase64)
-    : fileBase64
-  ));
+  if (this.dataMimeType) {
+      return 'data:' + mime.lookup(path) + ';base64,' + fileBase64;
+  }
+  return fileBase64;
 };
 
 Tobase64JSON.prototype._excludeFilesFromDir = function (dir) {
-  return _.filter(dir, function (file, i) {
+  return _.filter(dir, function (file) {
     return this.ignoreFiles.indexOf(file) === -1;
-  }, this);
+  }.bind(this));
 };
 
 Tobase64JSON.prototype._convertDirToBase64 = function (path, tree) {
@@ -89,7 +87,7 @@ Tobase64JSON.prototype._convertDirToBase64 = function (path, tree) {
     } else {
       tree[key] = this._convertFileToBase64(file_path);
     }
-  }, this);
+  }.bind(this));
 
   return tree;
 };
