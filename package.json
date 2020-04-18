@@ -2,20 +2,20 @@
   "author": {
     "name": "Mathieu Dutto",
     "email": "dutto.mathieu@gmail.com",
-    "url": "http://github.com/heymath"
+    "url": "https://github.com/heymath"
   },
   "contributors": [
     {
       "name": "Arnaud Molo",
       "email": "arnaud@onesime.fr",
-      "url": "http://github.com/onesime"
+      "url": "https://github.com/onesime"
     }
   ],
   "description": "Fast way to convert files to base64 into a JSON.",
   "main": "index.js",
   "dependencies": {
     "graceful-fs": "^4.1.0",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.15",
     "mime": "^1.4.1"
   },
   "devDependencies": {
